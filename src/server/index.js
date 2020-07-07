@@ -12,6 +12,10 @@ dotenv.config();
 
 const app = express()
 
+let projectData = {
+  image: null,
+  weather: null,
+}
 const port = 3000;
 
 app.use(cors())
@@ -41,22 +45,43 @@ app.post('/post_location', (req, res) => {
       const country = res.geonames[0].countryName || '';
       console.log("Res ", lat, long, country)
 
-      weatherBits_(lat, long, req.body.date)
-      .then((res) => {
-        console.log("WeatherBits successful ")
-      }).catch((error) => {
-        console.log("WeatherBits error ")
-      })
+      //pass values to next chain
+      return {
+        lat, long, country
+      }
+    }).then((res) => {
+      //return nested promise, In other to get value of weather data
+      weatherBits_(res.lat, res.long, req.body.date, res.country)
+        .then((res) => {
+          console.log("WeatherBits successful ")
 
-      pixaBay_(country)
-      .then((res) => {
-        const image_url = res.hits[0].largeImageURL
-        console.log("Pixabay successful ", image_url)
-      }).catch(() => {
-        console.log("Pixabay has an error")
-      })
+          //Add weather data to projectData object
+          projectData.weather = res
+        }).catch((error) => {
+          console.log("WeatherBits error ")
+        })
+
+        //pass country to next chain
+      return res.country
+    }).then((pixa_res) => {
+      console.log(pixa_res, "country")
+      pixaBay_(pixa_res)
+        .then((pixa_res) => {
+          const image_url = pixa_res.hits[0].largeImageURL
+          console.log("Pixabay successful ", image_url)
+          //set projectData image Values
+          projectData.image = image_url
+          res.send(projectData)
+        }).catch((error) => {
+
+          console.log("Pixabay has an error")
+          res.send(error)
+        })
+
+    }).catch((error) => {
+      res.status(400).send(error)
     })
-  res.send()
+
 })
 
 

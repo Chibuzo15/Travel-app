@@ -26,8 +26,10 @@ const weatherBits_ = async (lat, long, date) => {
     console.log('Weather bits url ', url)
 
     const response = await fetch(url)
+    const data = await response.json()
 
-    return response.json()
+    //pass country, so as to chain to next promise
+    return data
 }
 
 const pixaBay_ = async (search) => {
