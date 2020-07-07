@@ -1,17 +1,10 @@
 var path = require('path')
 const express = require('express')
-// const mockAPIResponse = require('./mockAPI.js')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
-const aylien = require("aylien_textapi");
 const dotenv = require('dotenv');
 dotenv.config();
-
-const textapi = new aylien({
-  application_id: process.env.API_ID,
-  application_key: process.env.API_KEY
-});
 
 const app = express()
 
@@ -32,28 +25,22 @@ app.get('/', function (req, res) {
   res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
-// designates what port the app will listen to for incoming requests
+//post route to add new entry
+app.post('/add_new_info', (req, res) => {
+  const temperature = req.body.temp
+  const date = req.body.date
+  const userResponse = req.body.feelings
 
-
-app.post('/api', function (req, res) {
-  console.log(req.body)
-
-  textapi.sentiment({
-    'text': req.body.text
-  }, function (error, response) {
-    if (error === null) {
-      console.log(response);
-      res.json(response);
-    }
-    else {
-      console.log(error)
-      res.status(400).send({
-        error: "Something went wrong"
-      })
-    }
-  });
+  projectData = {
+      temperature,
+      date,
+      userResponse
+  }
+  res.send(projectData)
 })
 
+
+// designates what port the app will listen to for incoming requests
 app.listen(8080, function () {
   console.log('Example app listening on port 8080!')
 })
