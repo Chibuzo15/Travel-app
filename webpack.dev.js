@@ -8,10 +8,15 @@ module.exports = {
     entry: './src/client/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: '/dist/',
+        // publicPath: '/dist/',
         filename: 'bundle.min.js',
         libraryTarget: 'var',
         library: 'Client'
+    },
+    devServer: {
+        publicPath: "/",
+        contentBase: "/dist/",
+        hot: true
     },
     mode: 'development',
     devtool: 'source-map',

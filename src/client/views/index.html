@@ -14,15 +14,13 @@
         </h2>
         <div class="holder zip">
             <label for="zip">Enter Location Here</label>
-            <input type="text" id="zip" placeholder="location name">
+            <input type="text" id="location" placeholder="location name">
+            <label for="birthday">Date:</label>
+            <input type="date" placeholder="yyyy-mm-dd" id="date" name="date">
         </div>
-        <div class="holder feel">
-            <label for="feelings">How are you feeling today?</label>
-            <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9"
-                cols="50"></textarea>
-            <button id="generate" type="submit"> Generate </button>
-        </div>
+        <div><button id="generate" onclick="return Client.app(event)" type="submit"> GO </button></div>
         <div class="holder entry">
+            <br>
             <div class="title">Most Recent Entry</div>
             <div id="entryHolder">
                 <div id="date"></div>
