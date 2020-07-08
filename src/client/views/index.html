@@ -9,29 +9,49 @@
 </head>
 
 <body>
-    <div id="app">
+    <header>
         <h2 class="holder headline">
             Travel App Capstone Project
         </h2>
+    </header>
+    <div id="app">
+
         <div class="holder zip">
             <label for="zip">Enter Location Here</label>
             <input type="text" id="location" placeholder="location name">
-            <label for="birthday">Date: (16 days maximum forecast)</label>
+            <label for="date">Date: (16 days maximum forecast)</label>
             <input type="date" placeholder="yyyy-mm-dd" id="date" name="date">
         </div>
         <div><button id="generate" onclick="return Client.app(event)" type="submit"> GO </button></div>
         <div class="holder entry">
             <br>
             <div class="title">Travel guide</div>
-            <div id="entryHolder">
+            <div id="entryHolder" class="hidden">
                 <div class='top'>
                     <div id="image"></div>
                     <div id="weather"></div>
+                    <div class="title">Parking List</div>
+                    <div id="parking-list"></div>
+                    <button class="add_list"
+                    onclick="return Client.parking()">ADD</button>
                 </div>
-                <div id="content"><div id="print_trip" onclick="return Client.print()">Print Trip</div></div>
+                <div id="content">
+                    <div id="print_trip" onclick="return Client.print()">Print Trip</div>
+                </div>
             </div>
+
+
         </div>
     </div>
+    <div id="add_list_wrap" class="hidden add_list_wrap">
+        <div id='close' onclick="return Client.parking()">close</div>
+        <label class="title" for="item">Add Parking item</label>
+        <input type="text" name="item" id='item' placeholder="Add item" />
+        <button class='add_list' onclick="return Client.add_item()">ADD</button>
+    </div>
+    <footer>
+        copyright 2020
+    </footer>
 </body>
 
 </html>
