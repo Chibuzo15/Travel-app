@@ -27,3 +27,10 @@ Credientials is needed from three websites
 * Start server by command 'npm start'
 * Input location and date
 * Click GO !
+
+## Extend Options added
+* Add parking list feature
+* Print/Export to pdf feature
+
+# Refereneces
+* Print div feature was gotten from geeksforgeeks

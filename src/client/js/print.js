@@ -8,7 +8,7 @@ const print = () => {
     myWindow.document.write(trip);
     myWindow.document.write('</body></html>');
     myWindow.document.close();
-    myWindow.onload=function(){ // necessary if the div contain images
+    myWindow.onload = function () { // necessary if the div contain images
 
         myWindow.focus(); // necessary for IE >= 10
         myWindow.print();

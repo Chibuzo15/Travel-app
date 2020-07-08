@@ -1,10 +1,13 @@
+//Array to hold parking List
 const parkingList = []
 
+//function to toggle visibility of "ADD PARKING ITEM"
 const parking = () => {
     const button = document.querySelector('#add_list_wrap');
     button.classList.toggle("hidden");
 }
 
+//function to add parking Item
 const add_item = () => {
     const item = document.querySelector('#item').value
 
@@ -16,7 +19,7 @@ const add_item = () => {
     parkingList.push(item)
 
     let itemFragWrap = document.createDocumentFragment()
-    for(let i = 0; i < parkingList.length; i++){
+    for (let i = 0; i < parkingList.length; i++) {
         const itemFrag = document.createElement('template')
         itemFrag.innerHTML = `<span> ${parkingList[i]} </span>`
 
