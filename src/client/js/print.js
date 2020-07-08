@@ -1,0 +1,5 @@
+const print = () => {
+
+}
+
+export { print };

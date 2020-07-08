@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Journal</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
@@ -15,17 +16,19 @@
         <div class="holder zip">
             <label for="zip">Enter Location Here</label>
             <input type="text" id="location" placeholder="location name">
-            <label for="birthday">Date:</label>
+            <label for="birthday">Date: (16 days maximum forecast)</label>
             <input type="date" placeholder="yyyy-mm-dd" id="date" name="date">
         </div>
         <div><button id="generate" onclick="return Client.app(event)" type="submit"> GO </button></div>
         <div class="holder entry">
             <br>
-            <div class="title">Most Recent Entry</div>
+            <div class="title">Travel guide</div>
             <div id="entryHolder">
-                <div id="date"></div>
-                <div id="temp"></div>
-                <div id="content"></div>
+                <div class='top'>
+                    <div id="image"></div>
+                    <div id="weather"></div>
+                </div>
+                <div id="content"><div id="print_trip" onclick="return Client.print()">Print Trip</div></div>
             </div>
         </div>
     </div>

@@ -12,6 +12,61 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
+#entryHolder{
+    display: none;
+    padding: 20px;
+    background-color: #7ab6c7;
+    min-height: 40px;
+
+    .top{
+        display: flex;
+        flex-wrap: wrap;
+
+        #image{
+            width: 100%
+        }
+
+        #weather{
+            width: 100%
+        }
+    }
+
+    img{
+        max-width: 100%;
+        max-height: 210px;
+    }
+
+}
+
+#print_trip{
+    display: none;
+    width: fit-content;
+    padding: 3px;
+    border: 1.3px dashed white
+}
+
+#weather_desc{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#weather_desc span{
+    width: 100%;
+    color:#c3c1c1
+}
+
+
+
+.top{
+    background-color: #3b4a6b;
+    padding: 10px
+}
+
+#date_res{
+    font-size: 20px;
+    color: black
+}
+
 #date,
 #temp,
 #content
@@ -91,5 +146,25 @@ button:focus {
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: #f0d43a;
     font-family: 'Oswald', sans-serif;
+
+}
+
+// media query
+@media screen and (min-width :500px) {
+    img{
+        max-height: 300px;
+    }
+
+    .top{
+        display: flex;
+        flex-wrap: nowrap;
+
+        #image{
+            width: 50%;
+        }
+        #weather{
+            width: 50%
+        }
+    }
 
 }

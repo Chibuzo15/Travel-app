@@ -14,6 +14,7 @@ const app = express()
 
 let projectData = {
   image: null,
+  location: null,
   weather: null,
 }
 const port = 3000;
@@ -45,6 +46,12 @@ app.post('/post_location', (req, res) => {
       const country = res.geonames[0].countryName || '';
       console.log("Res ", lat, long, country)
 
+      //add location to projectData
+      projectData.location = {
+        city: res.geonames[0].name,
+        country
+      }
+
       //pass values to next chain
       return {
         lat, long, country
@@ -54,9 +61,15 @@ app.post('/post_location', (req, res) => {
       weatherBits_(res.lat, res.long, req.body.date, res.country)
         .then((res) => {
           console.log("WeatherBits successful ")
+          let weatherData = res.data
+          const neededWeather = weatherData.find(each => {
+            console.log(each.valid_date, ' va ', req.body.date)
+            return each.datetime = req.body.date
+          })
 
           //Add weather data to projectData object
-          projectData.weather = res
+          projectData.weather = neededWeather
+          // console.log(projectData, "project data after weather")
         }).catch((error) => {
           console.log("WeatherBits error ")
         })
